@@ -1,5 +1,5 @@
 # Shadowsocks-libev Dockerfile
-This Dockerfile builds an image with the [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) and [simple-obfs](https://github.com/shadowsocks/simple-obfs). Based on Arch Linux image.
+This Dockerfile builds an image with the [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) and [simple-obfs](https://github.com/shadowsocks/simple-obfs), based on Arch Linux image.
 
 Current version:
 - shadowsocks-libev: 3.0.5
