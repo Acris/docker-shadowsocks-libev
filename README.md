@@ -1,6 +1,11 @@
 # Shadowsocks-libev Dockerfile
 This Dockerfile builds an image with the [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) and [simple-obfs](https://github.com/shadowsocks/simple-obfs). Based on Arch Linux image.
 
+Current version:
+- shadowsocks-libev: 3.0.5
+- simple-obfs: 0.0.3
+
+
 
 ## Quick Start
 
@@ -17,6 +22,7 @@ docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp acrisli
 ```
 
 
+
 ## Default configration
 
 Server host: `0.0.0.0`  
@@ -27,23 +33,26 @@ Timeout: `60`
 DNS: `8.8.8.8`  
 
 
+
 ## Simple-obfs plugin parameter
 
 ```bash
 --plugin obfs-server
 --plugin-opts "obfs=tls"
 ```
+
 On the client, use this configuration:
+
 ```bash
 --plugin obfs-local
 --plugin-opts "obfs=tls;obfs-host=www.bing.com"
 ```
 
+
+
 ## Setting a specific configration
 
-You can use these environment variables to specific configration:
-- `ENCRYPT_METHOD` is the encrypt method
-- `PASSWORD` is the password
+You can use environment variables to specific configration.
 
 For example with encrypt method `aes-256-cfb` with password `MyPassword`:
 
