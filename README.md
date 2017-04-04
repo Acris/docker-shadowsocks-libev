@@ -15,6 +15,7 @@ Get the docker image by running the following commands:
 docker pull acrisliu/shadowsocks-libev
 ```
 
+
 Start a instance:
 
 ```bash
@@ -34,12 +35,13 @@ DNS: `8.8.8.8`
 
 
 
-## Simple-obfs plugin parameter
+## Simple-obfs plugin configration
 
 ```bash
 --plugin obfs-server
 --plugin-opts "obfs=tls"
 ```
+
 
 On the client, use this configuration:
 
