@@ -58,12 +58,12 @@ docker run -e ENCRYPT_METHOD=aes-256-cfb -e PASSWORD=MyPassword -d --name=shadow
 
 Available environment variables:
 
-- SERVER_HOST: Host name or ip address of your remote server
-- SERVER_PORT: Port number of your remote server
-- PASSWORD: Password of your remote server
-- ENCRYPT_METHOD: Encrypt method
-- TIMEOUT: Socket timeout in seconds
-- DNS_ADDR: Setup name servers for internal DNS resolver
+- `SERVER_HOST`: Host name or ip address of your remote server
+- `SERVER_PORT`: Port number of your remote server
+- `PASSWORD`: Password of your remote server
+- `ENCRYPT_METHOD`: Encrypt method
+- `TIMEOUT`: Socket timeout in seconds
+- `DNS_ADDR`: Setup name servers for internal DNS resolver
 
 
 ## How to upgrade
