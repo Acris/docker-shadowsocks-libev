@@ -61,3 +61,19 @@ For example with encrypt method `aes-256-cfb` with password `MyPassword`:
 ```bash
 docker run -e ENCRYPT_METHOD=aes-256-cfb -e PASSWORD=MyPassword -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp acrisliu/shadowsocks-libev
 ```
+
+
+
+## How to upgrade
+
+Just use boellow commands:
+
+```bash
+# Pull the latest image
+docker pull acrisliu/shadowsocks-libev
+# Stop and remove old container
+docker stop shadowsocks-libev
+docker rm shadowsocks-libev
+# Start a new container with latest image
+docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp acrisliu/shadowsocks-libev
+```
