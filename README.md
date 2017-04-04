@@ -6,7 +6,6 @@ Current version:
 - simple-obfs: 0.0.3
 
 
-
 ## Quick Start
 
 Get the docker image by running the following commands:
@@ -15,13 +14,11 @@ Get the docker image by running the following commands:
 docker pull acrisliu/shadowsocks-libev
 ```
 
-
 Start a instance:
 
 ```bash
 docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp acrisliu/shadowsocks-libev
 ```
-
 
 
 ## Default configration
@@ -34,14 +31,12 @@ Timeout: `60`
 DNS: `8.8.8.8`  
 
 
-
 ## Simple-obfs plugin configration
 
 ```bash
 --plugin obfs-server
 --plugin-opts "obfs=tls"
 ```
-
 
 On the client, use this configuration:
 
@@ -51,17 +46,24 @@ On the client, use this configuration:
 ```
 
 
-
 ## Setting a specific configration
 
 You can use environment variables to specific configration.
 
-For example with encrypt method `aes-256-cfb` with password `MyPassword`:
+For example with encrypt method `aes-256-cfb` and password `MyPassword`:
 
 ```bash
 docker run -e ENCRYPT_METHOD=aes-256-cfb -e PASSWORD=MyPassword -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp acrisliu/shadowsocks-libev
 ```
 
+Available environment variables:
+
+- SERVER_HOST: Host name or ip address of your remote server
+- SERVER_PORT: Port number of your remote server
+- PASSWORD: Password of your remote server
+- ENCRYPT_METHOD: Encrypt method
+- TIMEOUT: Socket timeout in seconds
+- DNS_ADDR: Setup name servers for internal DNS resolver
 
 
 ## How to upgrade
