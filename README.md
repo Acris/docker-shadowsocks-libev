@@ -53,7 +53,7 @@ You can use environment variables to specific configration.
 For example with encrypt method `aes-256-cfb` and password `MyPassword`:
 
 ```bash
-docker run -e ENCRYPT_METHOD=aes-256-cfb -e PASSWORD=MyPassword -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp acrisliu/shadowsocks-libev
+docker run -e ENCRYPT_METHOD=aes-256-cfb -e PASSWORD=MyPassword -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp --restart=always acrisliu/shadowsocks-libev
 ```
 
 Available environment variables:
@@ -77,5 +77,5 @@ docker pull acrisliu/shadowsocks-libev
 docker stop shadowsocks-libev
 docker rm shadowsocks-libev
 # Start a new container with latest image
-docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp acrisliu/shadowsocks-libev
+docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp --restart=always acrisliu/shadowsocks-libev
 ```
