@@ -17,7 +17,7 @@ docker pull acrisliu/shadowsocks-libev
 Start a instance:
 
 ```bash
-docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp acrisliu/shadowsocks-libev
+docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp --restart=always acrisliu/shadowsocks-libev
 ```
 
 
