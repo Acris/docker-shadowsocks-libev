@@ -29,6 +29,8 @@ Password: `shadowsocks`
 Encrypt method: `chacha20`  
 Timeout: `60`  
 DNS: `8.8.8.8`  
+Plugin: `obfs-server`  
+Plugin options: `obfs=tls`  
 
 
 ## Simple-obfs plugin configration
@@ -64,6 +66,8 @@ Available environment variables:
 - `ENCRYPT_METHOD`: Encrypt method
 - `TIMEOUT`: Socket timeout in seconds
 - `DNS_ADDR`: Setup name servers for internal DNS resolver
+- `PLUGIN`: Enable SIP003 plugin
+- `PLUGIN_OPTS`: Set SIP003 plugin options
 
 
 ## How to upgrade
