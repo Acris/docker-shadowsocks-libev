@@ -7,8 +7,8 @@ ENV SIMPLE_OBFS_VERSION v0.0.3
 
 # Build shadowsocks-libev and simple-obfs
 RUN set -ex \
-        # Install dependencies
-	&& apk add --no-cache --virtual .build-deps \
+    # Install dependencies
+    && apk add --no-cache --virtual .build-deps \
                autoconf \
                automake \
                build-base \
@@ -24,7 +24,7 @@ RUN set -ex \
                git \
                xmlto \
                asciidoc \
-	&& apk add --no-cache --virtual .run-deps \
+    && apk add --no-cache --virtual .run-deps \
                libev \
                libsodium \
                mbedtls \
