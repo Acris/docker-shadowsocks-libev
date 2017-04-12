@@ -3,14 +3,11 @@ FROM alpine
 MAINTAINER Acris Liu "acrisliu@gmail.com"
 
 ENV SHADOWSOCKS_LIBEV_VERSION v3.0.5
-
 ENV SIMPLE_OBFS_VERSION v0.0.3
 
 # Build shadowsocks-libev and simple-obfs
 RUN set -ex \
-
-    # Install dependencies
-
+        # Install dependencies
 	&& apk add --no-cache --virtual .build-deps \
                autoconf \
                automake \
@@ -34,9 +31,7 @@ RUN set -ex \
                musl \
                pcre \
                udns \
-
     # Build shadowsocks-libev
-
     && mkdir -p /tmp/build-shadowsocks-libev \
     && cd /tmp/build-shadowsocks-libev \
     && git clone https://github.com/shadowsocks/shadowsocks-libev.git \
@@ -48,9 +43,7 @@ RUN set -ex \
     && make install \
     && cd / \
     && rm -rf /tmp/build-shadowsocks-libev \
-
     # Build simple-obfs
-
     && mkdir -p /tmp/build-simple-obfs \
     && cd /tmp/build-simple-obfs \
     && git clone https://github.com/shadowsocks/simple-obfs.git \
