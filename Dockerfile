@@ -7,6 +7,7 @@ ENV SIMPLE_OBFS_VERSION v0.0.3
 
 # Build shadowsocks-libev and simple-obfs
 RUN set -ex \
+
     # Install dependencies
     && apk add --no-cache --virtual .build-deps \
                autoconf \
@@ -31,6 +32,7 @@ RUN set -ex \
                musl \
                pcre \
                udns \
+
     # Build shadowsocks-libev
     && mkdir -p /tmp/build-shadowsocks-libev \
     && cd /tmp/build-shadowsocks-libev \
@@ -43,6 +45,7 @@ RUN set -ex \
     && make install \
     && cd / \
     && rm -rf /tmp/build-shadowsocks-libev \
+
     # Build simple-obfs
     && mkdir -p /tmp/build-simple-obfs \
     && cd /tmp/build-simple-obfs \
