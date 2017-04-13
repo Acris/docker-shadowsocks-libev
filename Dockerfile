@@ -23,15 +23,6 @@ RUN set -ex \
                tar \
                udns-dev \
                git \
-               xmlto \
-               asciidoc \
-    && apk add --no-cache --virtual .run-deps \
-               libev \
-               libsodium \
-               mbedtls \
-               musl \
-               pcre \
-               udns \
 
     # Build shadowsocks-libev
     && mkdir -p /tmp/build-shadowsocks-libev \
@@ -41,8 +32,15 @@ RUN set -ex \
     && git checkout "$SHADOWSOCKS_LIBEV_VERSION" \
     && git submodule update --init --recursive \
     && ./autogen.sh \
-    && ./configure \
+    && ./configure --disable-documentation \
     && make install \
+    && ssRunDeps="$( \
+        scanelf --needed --nobanner /usr/local/bin/ss-server \
+            | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+            | xargs -r apk info --installed \
+            | sort -u \
+    )" \
+    && apk add --no-cache --virtual .ss-rundeps $ssRunDeps \
     && cd / \
     && rm -rf /tmp/build-shadowsocks-libev \
 
@@ -54,11 +52,21 @@ RUN set -ex \
     && git checkout "$SIMPLE_OBFS_VERSION" \
     && git submodule update --init --recursive \
     && ./autogen.sh \
-    && ./configure \
+    && ./configure --disable-documentation \
     && make install \
+    && simpleObfsRunDeps="$( \
+        scanelf --needed --nobanner /usr/local/bin/obfs-server \
+            | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+            | xargs -r apk info --installed \
+            | sort -u \
+    )" \
+    && apk add --no-cache --virtual .simple-obfs-rundeps $simpleObfsRunDeps \
     && cd / \
     && rm -rf /tmp/build-simple-obfs \
-    && apk del .build-deps
+    
+    # Delete dependencies
+    && apk del .build-deps \
+    && apk cache clean
 
 # Shadowsocks environment variables
 ENV SERVER_HOST 0.0.0.0
