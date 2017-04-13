@@ -65,8 +65,7 @@ RUN set -ex \
     && rm -rf /tmp/build-simple-obfs \
     
     # Delete dependencies
-    && apk del .build-deps \
-    && apk cache clean
+    && apk del .build-deps
 
 # Shadowsocks environment variables
 ENV SERVER_HOST 0.0.0.0
