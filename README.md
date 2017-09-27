@@ -2,7 +2,7 @@
 This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) with [simple-obfs](https://github.com/shadowsocks/simple-obfs), based on Alpine Linux.
 
 Current version:
-- shadowsocks-libev: v3.0.8
+- shadowsocks-libev: v3.1.0
 - simple-obfs: v0.0.3
 
 
