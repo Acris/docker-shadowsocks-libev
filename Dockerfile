@@ -22,6 +22,7 @@ RUN set -ex \
                pcre-dev \
                tar \
                udns-dev \
+               c-ares-dev \
                git \
 
     # Build shadowsocks-libev
