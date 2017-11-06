@@ -3,7 +3,7 @@ This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadow
 
 Current version:
 - shadowsocks-libev: v3.1.0
-- simple-obfs: v0.0.3
+- simple-obfs: v0.0.4
 
 
 ## Quick Start
