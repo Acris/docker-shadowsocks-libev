@@ -26,8 +26,8 @@ docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp --resta
 Server host: `0.0.0.0`  
 Server port: `8388`  
 Password: `shadowsocks`  
-Encrypt method: `chacha20`  
-Timeout: `60`  
+Encrypt method: `chacha20-ietf-poly1305`  
+Timeout: `600`  
 DNS: `8.8.8.8`  
 Plugin: `obfs-server`  
 Plugin options: `obfs=tls`  
