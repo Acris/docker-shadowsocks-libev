@@ -90,7 +90,7 @@ ENTRYPOINT ss-server -s "$SERVER_HOST" \
                      --plugin "$PLUGIN" \
                      --plugin-opts "$PLUGIN_OPTS" \
                      -u \
-                     -6 \
                      --mptcp \
                      --reuse-port \
-                     --fast-open
+                     --fast-open \
+                     --no-delay
