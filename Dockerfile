@@ -93,4 +93,4 @@ ENTRYPOINT ss-server -s "$SERVER_HOST" \
                      -6 \
                      --mptcp \
                      --reuse-port \
-                     --no-delay
+                     --fast-open
