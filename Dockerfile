@@ -90,5 +90,7 @@ ENTRYPOINT ss-server -s "$SERVER_HOST" \
                      --plugin "$PLUGIN" \
                      --plugin-opts "$PLUGIN_OPTS" \
                      -u \
+                     -6 \
                      --fast-open \
-                     --reuse-port
+                     --reuse-port \
+                     --no-delay
