@@ -2,7 +2,7 @@ FROM alpine
 
 MAINTAINER Acris Liu "acrisliu@gmail.com"
 
-ENV SHADOWSOCKS_LIBEV_VERSION v3.2.0
+ENV SHADOWSOCKS_LIBEV_VERSION v3.2.1
 ENV SIMPLE_OBFS_VERSION v0.0.5
 
 # Build shadowsocks-libev and simple-obfs
