@@ -72,7 +72,7 @@ Available environment variables:
 
 ## How to upgrade
 
-Just use boellow commands:
+Just use bellow commands:
 
 ```bash
 # Pull the latest image
