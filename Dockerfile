@@ -62,24 +62,27 @@ RUN set -ex \
 COPY --from=golang /go/src/github.com/shadowsocks/v2ray-plugin/v2ray-plugin /usr/local/bin
 
 # Shadowsocks environment variables
-ENV SERVER_HOST 0.0.0.0
+ENV SERVER_ADDR 0.0.0.0
+ENV SERVER_ADDR_IPV6 ::0
 ENV SERVER_PORT 8388
-ENV PASSWORD shadowsocks
-ENV ENCRYPT_METHOD chacha20-ietf-poly1305
+ENV PASSWORD changeme!!!
+ENV METHOD chacha20-ietf-poly1305
 ENV TIMEOUT 600
-ENV DNS_ADDR 1.1.1.1
+ENV DNS_ADDRS 1.1.1.1,1.0.0.1
+ENV ARGS -u
 
 EXPOSE $SERVER_PORT/tcp $SERVER_PORT/udp
 
 # Start shadowsocks-libev server
-ENTRYPOINT ss-server -s "$SERVER_HOST" \
-                     -p "$SERVER_PORT" \
-                     -k "$PASSWORD" \
-                     -m "$ENCRYPT_METHOD" \
-                     -t "$TIMEOUT" \
-                     -d "$DNS_ADDR" \
-                     --plugin "$PLUGIN" \
-                     --plugin-opts "$PLUGIN_OPTS" \
-                     --reuse-port \
-                     --fast-open \
-                     --no-delay
+CMD exec ss-server \
+    -s $SERVER_ADDR \
+    -s $SERVER_ADDR_IPV6 \
+    -p $SERVER_PORT \
+    -k $PASSWORD \
+    -m $METHOD \
+    -t $TIMEOUT \
+    -d $DNS_ADDRS \
+    --reuse-port \
+    --fast-open \
+    --no-delay \
+    $ARGS
