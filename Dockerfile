@@ -1,8 +1,11 @@
 FROM golang:alpine AS golang
 
+ENV V2RAY_PLUGIN_VERSION v1.0
+
 RUN apk add --no-cache git \
     && go get -d -v github.com/shadowsocks/v2ray-plugin \
 	&& cd /go/src/github.com/shadowsocks/v2ray-plugin \
+	&& git checkout "$V2RAY_PLUGIN_VERSION" \
 	&& go build
 
 FROM alpine
@@ -10,7 +13,6 @@ FROM alpine
 LABEL maintainer="acrisliu@gmail.com"
 
 ENV SHADOWSOCKS_LIBEV_VERSION v3.2.3
-ENV V2RAY_PLUGIN_VERSION v1.0
 
 # Build shadowsocks-libev
 RUN set -ex \

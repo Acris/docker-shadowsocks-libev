@@ -56,18 +56,56 @@ Available environment variables:
 ## Enable v2ray-plugin
 By default, v2ray-plugin is disabled, to enable it, use `-e PLUGIN=v2ray-plugin` and `-e PLUGIN_OPTS=your-plugin-options`.
 
-On your server side:
+OSee command line args for advanced usages.
 
-```bash
---plugin v2ray-plugin
---plugin-opts "server;mode=quic;host=mydomain.com"
+### Shadowsocks over websocket (HTTP)
+
+On your server
+
+```sh
+ss-server -c config.json -p 80 --plugin v2ray-plugin --plugin-opts "server"
 ```
 
-On the client, use this configuration:
+On your client
 
-```bash
---plugin v2ray-plugin
---plugin-opts "mode=quic;host=mydomain.com"
+```sh
+ss-local -c config.json -p 80 --plugin v2ray-plugin
+```
+
+### Shadowsocks over websocket (HTTPS)
+
+On your server
+
+```sh
+ss-server -c config.json -p 443 --plugin v2ray-plugin --plugin-opts "server;tls;host=mydomain.me"
+```
+
+On your client
+
+```sh
+ss-local -c config.json -p 443 --plugin v2ray-plugin --plugin-opts "tls;host=mydomain.me"
+```
+
+### Shadowsocks over quic
+
+On your server
+
+```sh
+ss-server -c config.json -p 443 --plugin v2ray-plugin --plugin-opts "server;mode=quic;host=mydomain.me"
+```
+
+On your client
+
+```sh
+ss-local -c config.json -p 443 --plugin v2ray-plugin --plugin-opts "mode=quic;host=mydomain.me"
+```
+
+### Issue a cert for TLS and QUIC
+
+```sh
+curl  https://get.acme.sh | sh
+sudo apt-get -y install socat
+sudo ~/.acme.sh/acme.sh --issue -d mydomain.me --standalone -k 4096
 ```
 
 For more v2ray-plugin configrations please go to [v2ray plugin docs](https://github.com/shadowsocks/v2ray-plugin/blob/master/README.md)
