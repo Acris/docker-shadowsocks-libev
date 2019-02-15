@@ -1,15 +1,16 @@
 FROM golang:alpine AS golang
 
 ENV V2RAY_PLUGIN_VERSION v1.0
+ENV GO111MODULE on
 
 # Build v2ray-plugin
-RUN apk add --no-cache git \
+RUN apk add --no-cache git build-base \
     && mkdir -p /go/src/github.com/shadowsocks \
 	&& cd /go/src/github.com/shadowsocks \
     && git clone https://github.com/shadowsocks/v2ray-plugin.git \
 	&& cd v2ray-plugin \
 	&& git checkout "$V2RAY_PLUGIN_VERSION" \
-	&& go get \
+	&& go get -d \
 	&& go build
 
 FROM alpine
@@ -63,7 +64,6 @@ COPY --from=golang /go/src/github.com/shadowsocks/v2ray-plugin/v2ray-plugin /usr
 
 # Shadowsocks environment variables
 ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_ADDR_IPV6 ::0
 ENV SERVER_PORT 8388
 ENV PASSWORD changeme!!!
 ENV METHOD chacha20-ietf-poly1305
@@ -76,7 +76,6 @@ EXPOSE $SERVER_PORT/tcp $SERVER_PORT/udp
 # Start shadowsocks-libev server
 CMD exec ss-server \
     -s $SERVER_ADDR \
-    -s $SERVER_ADDR_IPV6 \
     -p $SERVER_PORT \
     -k $PASSWORD \
     -m $METHOD \
