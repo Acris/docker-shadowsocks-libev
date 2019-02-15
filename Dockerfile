@@ -80,7 +80,6 @@ ENTRYPOINT ss-server -s "$SERVER_HOST" \
                      -d "$DNS_ADDR" \
                      --plugin "$PLUGIN" \
                      --plugin-opts "$PLUGIN_OPTS" \
-                     -u \
                      --reuse-port \
                      --fast-open \
                      --no-delay
