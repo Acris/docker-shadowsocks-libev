@@ -38,7 +38,14 @@ You can use environment variables to specific configration.
 For example with encrypt method `aes-256-cfb` and password `MyPassword`:
 
 ```bash
-docker run -e ENCRYPT_METHOD=aes-256-cfb -e PASSWORD=MyPassword -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --restart=always acrisliu/shadowsocks-libev
+docker run -d \
+-e ENCRYPT_METHOD=aes-256-cfb \
+-e PASSWORD=MyPassword \
+--name=shadowsocks-libev \
+-p 8388:8388/tcp \
+-p 8388:8388/udp \
+--restart=always \
+acrisliu/shadowsocks-libev
 ```
 
 Available environment variables:
@@ -56,57 +63,21 @@ Available environment variables:
 ## Enable v2ray-plugin
 By default, v2ray-plugin is disabled, to enable it, use `-e PLUGIN=v2ray-plugin` and `-e PLUGIN_OPTS=your-plugin-options`.
 
-OSee command line args for advanced usages.
-
-### Shadowsocks over websocket (HTTP)
-
-On your server
-
+For example, if you want to enable quic mode:
 ```sh
-ss-server -c config.json -p 80 --plugin v2ray-plugin --plugin-opts "server"
+docker run -d \
+-e PLUGIN=v2ray-plugin \
+-e PLUGIN_OPTS=server;mode=quic;host=yourdomain.com \
+-e PASSWORD=MyPassword \
+-v /home/username/.acme.sh:/root/.acme.sh
+--name=shadowsocks-libev \
+-p 8388:8388/tcp \
+-p 8388:8388/udp \
+--restart=always \
+acrisliu/shadowsocks-libev
 ```
 
-On your client
-
-```sh
-ss-local -c config.json -p 80 --plugin v2ray-plugin
-```
-
-### Shadowsocks over websocket (HTTPS)
-
-On your server
-
-```sh
-ss-server -c config.json -p 443 --plugin v2ray-plugin --plugin-opts "server;tls;host=mydomain.me"
-```
-
-On your client
-
-```sh
-ss-local -c config.json -p 443 --plugin v2ray-plugin --plugin-opts "tls;host=mydomain.me"
-```
-
-### Shadowsocks over quic
-
-On your server
-
-```sh
-ss-server -c config.json -p 443 --plugin v2ray-plugin --plugin-opts "server;mode=quic;host=mydomain.me"
-```
-
-On your client
-
-```sh
-ss-local -c config.json -p 443 --plugin v2ray-plugin --plugin-opts "mode=quic;host=mydomain.me"
-```
-
-### Issue a cert for TLS and QUIC
-
-```sh
-curl  https://get.acme.sh | sh
-sudo apt-get -y install socat
-sudo ~/.acme.sh/acme.sh --issue -d mydomain.me --standalone -k 4096
-```
+Remember mount your certs to container.
 
 For more v2ray-plugin configrations please go to [v2ray plugin docs](https://github.com/shadowsocks/v2ray-plugin/blob/master/README.md)
 
@@ -122,5 +93,11 @@ docker pull acrisliu/shadowsocks-libev
 docker stop shadowsocks-libev
 docker rm shadowsocks-libev
 # Start a new container with the latest image
-docker run -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --restart=always acrisliu/shadowsocks-libev
+docker run -d \
+-e PASSWORD=MyPassword \
+--name=shadowsocks-libev \
+-p 8388:8388/tcp \
+-p 8388:8388/udp \
+--restart=always \
+acrisliu/shadowsocks-libev
 ```
