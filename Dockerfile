@@ -65,7 +65,7 @@ COPY --from=golang /go/src/github.com/shadowsocks/v2ray-plugin/v2ray-plugin /usr
 # Shadowsocks environment variables
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8388
-ENV PASSWORD changeme!!!
+ENV PASSWORD ChangeMe!!!
 ENV METHOD chacha20-ietf-poly1305
 ENV TIMEOUT 600
 ENV DNS_ADDRS 1.1.1.1,1.0.0.1
