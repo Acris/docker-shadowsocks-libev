@@ -28,7 +28,7 @@ Server port: `8388`
 Password: `shadowsocks`  
 Encrypt method: `chacha20-ietf-poly1305`  
 Timeout: `600`  
-DNS: `8.8.8.8`   
+DNS: `1.1.1.1`  
 
 
 ## Setting a specific configration
@@ -70,7 +70,7 @@ On the client, use this configuration:
 --plugin-opts "mode=quic;host=mydomain.com"
 ```
 
-For more v2ray-plugin configrations please go to [v2ray plugin doc](https://github.com/shadowsocks/v2ray-plugin/blob/master/README.md)
+For more v2ray-plugin configrations please go to [v2ray plugin docs](https://github.com/shadowsocks/v2ray-plugin/blob/master/README.md)
 
 
 ## How to upgrade

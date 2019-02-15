@@ -1,8 +1,8 @@
 FROM golang:alpine AS golang
 
-WORKDIR /go/src/github.com/shadowsocks/v2ray-plugin/
 RUN apk add --no-cache git \
     && go get -d -v github.com/shadowsocks/v2ray-plugin \
+	&& cd /go/src/github.com/shadowsocks/v2ray-plugin \
 	&& go build
 
 FROM alpine
@@ -14,7 +14,6 @@ ENV V2RAY_PLUGIN_VERSION v1.0
 
 # Build shadowsocks-libev
 RUN set -ex \
-
     # Install dependencies
     && apk add --no-cache --virtual .build-deps \
                autoconf \
@@ -31,7 +30,6 @@ RUN set -ex \
                udns-dev \
                c-ares-dev \
                git \
-
     # Build shadowsocks-libev
     && mkdir -p /tmp/build-shadowsocks-libev \
     && cd /tmp/build-shadowsocks-libev \
@@ -51,7 +49,6 @@ RUN set -ex \
     && apk add --no-cache --virtual .ss-rundeps $ssRunDeps \
     && cd / \
     && rm -rf /tmp/build-shadowsocks-libev \
-
     # Delete dependencies
     && apk del .build-deps
 
