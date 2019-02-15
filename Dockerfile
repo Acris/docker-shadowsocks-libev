@@ -1,11 +1,18 @@
+FROM golang:alpine AS golang
+
+WORKDIR /go/src/github.com/shadowsocks/v2ray-plugin/
+RUN apk add --no-cache git \
+    && go get -d -v github.com/shadowsocks/v2ray-plugin \
+	&& go build
+
 FROM alpine
 
-MAINTAINER Acris Liu "acrisliu@gmail.com"
+LABEL maintainer="acrisliu@gmail.com"
 
 ENV SHADOWSOCKS_LIBEV_VERSION v3.2.3
-ENV SIMPLE_OBFS_VERSION v0.0.5
+ENV V2RAY_PLUGIN_VERSION v1.0
 
-# Build shadowsocks-libev and simple-obfs
+# Build shadowsocks-libev
 RUN set -ex \
 
     # Install dependencies
@@ -45,28 +52,11 @@ RUN set -ex \
     && cd / \
     && rm -rf /tmp/build-shadowsocks-libev \
 
-    # Build simple-obfs
-    && mkdir -p /tmp/build-simple-obfs \
-    && cd /tmp/build-simple-obfs \
-    && git clone https://github.com/shadowsocks/simple-obfs.git \
-    && cd simple-obfs \
-    && git checkout "$SIMPLE_OBFS_VERSION" \
-    && git submodule update --init --recursive \
-    && ./autogen.sh \
-    && ./configure --disable-documentation \
-    && make install \
-    && simpleObfsRunDeps="$( \
-        scanelf --needed --nobanner /usr/local/bin/obfs-server \
-            | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-            | xargs -r apk info --installed \
-            | sort -u \
-    )" \
-    && apk add --no-cache --virtual .simple-obfs-rundeps $simpleObfsRunDeps \
-    && cd / \
-    && rm -rf /tmp/build-simple-obfs \
-    
     # Delete dependencies
     && apk del .build-deps
+
+# Copy v2ray-plugin
+COPY --from=golang /go/src/github.com/shadowsocks/v2ray-plugin/v2ray-plugin /usr/local/bin
 
 # Shadowsocks environment variables
 ENV SERVER_HOST 0.0.0.0
@@ -75,8 +65,6 @@ ENV PASSWORD shadowsocks
 ENV ENCRYPT_METHOD chacha20-ietf-poly1305
 ENV TIMEOUT 600
 ENV DNS_ADDR 8.8.8.8
-ENV PLUGIN obfs-server
-ENV PLUGIN_OPTS obfs=tls
 
 EXPOSE $SERVER_PORT/tcp $SERVER_PORT/udp
 

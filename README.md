@@ -1,9 +1,9 @@
 # Shadowsocks-libev Dockerfile
-This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) with [simple-obfs](https://github.com/shadowsocks/simple-obfs), based on Alpine Linux.
+This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) with [v2ray-plugin](https://github.com/shadowsocks/v2ray-plugin), based on Alpine Linux.
 
 Current version:
 - shadowsocks-libev: v3.2.3
-- simple-obfs: v0.0.5
+- v2ray-plugin: v1.0
 
 
 ## Quick Start
@@ -17,7 +17,7 @@ docker pull acrisliu/shadowsocks-libev
 Start a instance:
 
 ```bash
-docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp --restart=always acrisliu/shadowsocks-libev
+docker run -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --restart=always acrisliu/shadowsocks-libev
 ```
 
 
@@ -28,24 +28,7 @@ Server port: `8388`
 Password: `shadowsocks`  
 Encrypt method: `chacha20-ietf-poly1305`  
 Timeout: `600`  
-DNS: `8.8.8.8`  
-Plugin: `obfs-server`  
-Plugin options: `obfs=tls`  
-
-
-## Simple-obfs plugin configration
-
-```bash
---plugin obfs-server
---plugin-opts "obfs=tls"
-```
-
-On the client, use this configuration:
-
-```bash
---plugin obfs-local
---plugin-opts "obfs=tls;obfs-host=www.bing.com"
-```
+DNS: `8.8.8.8`   
 
 
 ## Setting a specific configration
@@ -55,7 +38,7 @@ You can use environment variables to specific configration.
 For example with encrypt method `aes-256-cfb` and password `MyPassword`:
 
 ```bash
-docker run -e ENCRYPT_METHOD=aes-256-cfb -e PASSWORD=MyPassword -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp --restart=always acrisliu/shadowsocks-libev
+docker run -e ENCRYPT_METHOD=aes-256-cfb -e PASSWORD=MyPassword -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --restart=always acrisliu/shadowsocks-libev
 ```
 
 Available environment variables:
@@ -66,8 +49,28 @@ Available environment variables:
 - `ENCRYPT_METHOD`: Encrypt method
 - `TIMEOUT`: Socket timeout in seconds
 - `DNS_ADDR`: Setup name servers for internal DNS resolver
-- `PLUGIN`: Enable SIP003 plugin
-- `PLUGIN_OPTS`: Set SIP003 plugin options
+- `PLUGIN`: Enable SIP003 plugin, only support v2ray-plugin.
+- `PLUGIN_OPTS`: Set SIP003 plugin options, only support v2ray-plugin options.
+
+
+## Enable v2ray-plugin
+By default, v2ray-plugin is disabled, to enable it, use `-e PLUGIN=v2ray-plugin` and `-e PLUGIN_OPTS=your-plugin-options`.
+
+On your server side:
+
+```bash
+--plugin v2ray-plugin
+--plugin-opts "server;mode=quic;host=mydomain.com"
+```
+
+On the client, use this configuration:
+
+```bash
+--plugin v2ray-plugin
+--plugin-opts "mode=quic;host=mydomain.com"
+```
+
+For more v2ray-plugin configrations please go to [v2ray plugin doc](https://github.com/shadowsocks/v2ray-plugin/blob/master/README.md)
 
 
 ## How to upgrade
@@ -80,6 +83,6 @@ docker pull acrisliu/shadowsocks-libev
 # Stop and remove old container
 docker stop shadowsocks-libev
 docker rm shadowsocks-libev
-# Start a new container with latest image
-docker run -d --name=shadowsocks-libev -p 3389:8388/tcp -p 3389:8388/udp --restart=always acrisliu/shadowsocks-libev
+# Start a new container with the latest image
+docker run -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --restart=always acrisliu/shadowsocks-libev
 ```
