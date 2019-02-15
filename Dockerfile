@@ -2,6 +2,7 @@ FROM golang:alpine AS golang
 
 ENV V2RAY_PLUGIN_VERSION v1.0
 
+# Build v2ray-plugin
 RUN apk add --no-cache git \
     && mkdir -p /go/src/github.com/shadowsocks \
 	&& cd /go/src/github.com/shadowsocks \
