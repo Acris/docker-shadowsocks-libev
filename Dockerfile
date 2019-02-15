@@ -6,12 +6,12 @@ ENV GO111MODULE on
 # Build v2ray-plugin
 RUN apk add --no-cache git build-base \
     && mkdir -p /go/src/github.com/shadowsocks \
-	&& cd /go/src/github.com/shadowsocks \
+    && cd /go/src/github.com/shadowsocks \
     && git clone https://github.com/shadowsocks/v2ray-plugin.git \
-	&& cd v2ray-plugin \
-	&& git checkout "$V2RAY_PLUGIN_VERSION" \
-	&& go get -d \
-	&& go build
+    && cd v2ray-plugin \
+    && git checkout "$V2RAY_PLUGIN_VERSION" \
+    && go get -d \
+    && go build
 
 FROM alpine
 
