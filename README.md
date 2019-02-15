@@ -23,12 +23,12 @@ docker run -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --resta
 
 ## Default configration
 
-Server host: `0.0.0.0`  
-Server port: `8388`  
-Password: `shadowsocks`  
-Encrypt method: `chacha20-ietf-poly1305`  
-Timeout: `600`  
-DNS: `1.1.1.1`  
+Server host: `0.0.0.0`    
+Server port: `8388`    
+Password: `shadowsocks`    
+Encrypt method: `chacha20-ietf-poly1305`    
+Timeout: `600`    
+DNS: `1.1.1.1`    
 
 
 ## Setting a specific configration
