@@ -3,9 +3,12 @@ FROM golang:alpine AS golang
 ENV V2RAY_PLUGIN_VERSION v1.0
 
 RUN apk add --no-cache git \
-    && go get -d -v github.com/shadowsocks/v2ray-plugin \
-	&& cd /go/src/github.com/shadowsocks/v2ray-plugin \
+    && mkdir -p /go/src/github.com/shadowsocks \
+	&& cd /go/src/github.com/shadowsocks \
+    && git clone https://github.com/shadowsocks/v2ray-plugin.git \
+	&& cd v2ray-plugin \
 	&& git checkout "$V2RAY_PLUGIN_VERSION" \
+	&& go get \
 	&& go build
 
 FROM alpine
