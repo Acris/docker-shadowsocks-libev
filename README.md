@@ -25,7 +25,7 @@ docker run -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --resta
 
 You can use environment variables to specific configration.
 
-For example with encrypt method `aes-256-gcm` and password `YourPassword`:
+For example, start a container with encrypt method `aes-256-gcm` and password `YourPassword`:
 
 ```bash
 docker run -d \
@@ -52,7 +52,7 @@ Available environment variables and default values:
 ## Enable v2ray-plugin
 By default, v2ray-plugin is disabled, use `ARGS` environment variable with `--plugin`, `--plugin-opts` arguments to enable it.
 
-For example, if you want to enable v2ray-plugin with quic mode:
+For example, if you want to enable v2ray-plugin with QUIC mode:
 ```sh
 docker run -d \
 -e "ARGS=--plugin v2ray-plugin --plugin-opts server;mode=quic;host=yourdomain.com" \
@@ -67,7 +67,7 @@ acrisliu/shadowsocks-libev
 
 *Attentions: if you want to enable v2ray-plugin QUIC mode, you must disable the UDP relay of ss-server, without `-u` argument in `ARGS`.*
 
-Enable v2ray-plugin with tls mode and enable UDP relay:
+Enable v2ray-plugin with TLS mode and enable UDP relay:
 ```sh
 docker run -d \
 -e "ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com -u" \
