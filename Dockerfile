@@ -15,7 +15,7 @@ RUN apk add --no-cache git build-base \
 
 FROM alpine
 
-LABEL maintainer="acrisliu@gmail.com"
+LABEL maintainer="Acris Liu <acrisliu@gmail.com>"
 
 ENV SHADOWSOCKS_LIBEV_VERSION v3.3.0
 
