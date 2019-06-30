@@ -82,6 +82,5 @@ CMD exec ss-server \
     -t $TIMEOUT \
     -d $DNS_ADDRS \
     --reuse-port \
-    --fast-open \
     --no-delay \
     $ARGS
