@@ -98,10 +98,10 @@ services:
       - "8388:8388/tcp"
       - "8388:8388/udp"
     volumes:
-      - /home/username/.acme.sh:/root/.acme.sh:ro
+      - /root/.acme.sh:/root/.acme.sh:ro
     environment:
       - PASSWORD=YourPassword
-      - ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com -u
+      - ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/yourdomain.com.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key -u
     restart: always
 ```
 
