@@ -52,10 +52,24 @@ Available environment variables and default values:
 ## Enable v2ray-plugin
 By default, v2ray-plugin is disabled, use `ARGS` environment variable with `--plugin`, `--plugin-opts` arguments to enable it.
 
-For example, if you want to enable v2ray-plugin with QUIC mode:
+For example, if you want to enable v2ray-plugin with TLS mode and enable UDP relay:
 ```sh
 docker run -d \
--e "ARGS=--plugin v2ray-plugin --plugin-opts server;mode=quic;host=yourdomain.com" \
+-e "ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com;cert=/path/file.crt;key=/path/file.key -u" \
+-e PASSWORD=YourPassword \
+-v /home/username/.acme.sh:/root/.acme.sh \
+--name=shadowsocks-libev \
+-p 8388:8388/tcp \
+-p 8388:8388/udp \
+--restart=always \
+acrisliu/shadowsocks-libev
+```
+
+
+Enable v2ray-plugin with QUIC mode:
+```sh
+docker run -d \
+-e "ARGS=--plugin v2ray-plugin --plugin-opts server;mode=quic;host=yourdomain.com;cert=/path/file.crt;key=/path/file.key" \
 -e PASSWORD=YourPassword \
 -v /home/username/.acme.sh:/root/.acme.sh \
 --name=shadowsocks-libev \
@@ -66,19 +80,6 @@ acrisliu/shadowsocks-libev
 ```
 
 *Attentions: if you want to enable v2ray-plugin QUIC mode, you must disable the UDP relay of ss-server, without `-u` argument in `ARGS`.*
-
-Enable v2ray-plugin with TLS mode and enable UDP relay:
-```sh
-docker run -d \
--e "ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com -u" \
--e PASSWORD=YourPassword \
--v /home/username/.acme.sh:/root/.acme.sh \
---name=shadowsocks-libev \
--p 8388:8388/tcp \
--p 8388:8388/udp \
---restart=always \
-acrisliu/shadowsocks-libev
-```
 
 Remember mount your certs to container, recommend use [acme.sh](acme.sh) to issue certs.
 
