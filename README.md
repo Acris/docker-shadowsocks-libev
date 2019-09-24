@@ -44,7 +44,7 @@ Available environment variables and default values:
 - `SERVER_PORT`: Port number of your remote server, default value is `8388`.
 - `PASSWORD`: Password of your remote server, default value is `ChangeMe!!!`.
 - `METHOD`: Encrypt method, default value is `chacha20-ietf-poly1305`.
-- `TIMEOUT`: Socket timeout in seconds, default value is `600`.
+- `TIMEOUT`: Socket timeout in seconds, default value is `86400`.
 - `DNS_ADDRS`: Setup name servers for internal DNS resolver, default value is `1.1.1.1,1.0.0.1`.
 - `ARGS`: Additional arguments supported by `ss-server`, default value is `-u`, to enable UDP relay.
 
