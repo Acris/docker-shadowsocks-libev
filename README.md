@@ -55,7 +55,7 @@ By default, v2ray-plugin is disabled, use `ARGS` environment variable with `--pl
 For example, if you want to enable v2ray-plugin with TLS mode and enable UDP relay:
 ```sh
 docker run -d \
--e "ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/yourdomain.com.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key -u" \
+-e "ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/fullchain.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key -u" \
 -e PASSWORD=YourPassword \
 -v /root/.acme.sh:/root/.acme.sh \
 --name=shadowsocks-libev \
@@ -69,7 +69,7 @@ acrisliu/shadowsocks-libev
 Enable v2ray-plugin with QUIC mode:
 ```sh
 docker run -d \
--e "ARGS=--plugin v2ray-plugin --plugin-opts server;mode=quic;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/yourdomain.com.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key" \
+-e "ARGS=--plugin v2ray-plugin --plugin-opts server;mode=quic;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/fullchain.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key" \
 -e PASSWORD=YourPassword \
 -v /root/.acme.sh:/root/.acme.sh \
 --name=shadowsocks-libev \
@@ -101,7 +101,7 @@ services:
       - /root/.acme.sh:/root/.acme.sh:ro
     environment:
       - PASSWORD=YourPassword
-      - ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/yourdomain.com.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key -u
+      - ARGS=--plugin v2ray-plugin --plugin-opts server;tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/fullchain.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key -u
     restart: always
 ```
 
