@@ -3,7 +3,7 @@ This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadow
 
 Current version:
 - shadowsocks-libev: v3.3.1
-- v2ray-plugin: v1.1.0
+- v2ray-plugin: v1.2.0
 
 
 ## Quick Start
