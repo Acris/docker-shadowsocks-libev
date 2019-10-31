@@ -17,7 +17,7 @@ FROM alpine
 
 LABEL maintainer="Acris Liu <acrisliu@gmail.com>"
 
-ENV SHADOWSOCKS_LIBEV_VERSION v3.3.2
+ENV SHADOWSOCKS_LIBEV_VERSION v3.3.3
 
 # Build shadowsocks-libev
 RUN set -ex \
