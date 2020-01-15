@@ -73,6 +73,8 @@ ENV ARGS -u
 
 EXPOSE $SERVER_PORT/tcp $SERVER_PORT/udp
 
+USER nobody
+
 # Start shadowsocks-libev server
 CMD exec ss-server \
     -s $SERVER_ADDR \
