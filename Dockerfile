@@ -1,6 +1,6 @@
 FROM golang:alpine AS golang
 
-ENV V2RAY_PLUGIN_VERSION v1.2.0
+ENV V2RAY_PLUGIN_VERSION v1.3.0
 ENV GO111MODULE on
 
 # Build v2ray-plugin
