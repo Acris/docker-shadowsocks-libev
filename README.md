@@ -2,7 +2,7 @@
 This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) with [v2ray-plugin](https://github.com/shadowsocks/v2ray-plugin), based on Alpine Linux.
 
 Current version:
-- shadowsocks-libev: v3.3.4
+- shadowsocks-libev: v3.3.5
 - v2ray-plugin: v1.3.1
 
 
