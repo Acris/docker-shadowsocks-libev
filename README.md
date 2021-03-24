@@ -40,7 +40,7 @@ acrisliu/shadowsocks-libev
 
 Available environment variables and default values:
 
-- `SERVER_ADDRS`: Host name or ip address of your remote server, default value is `0.0.0.0`.
+- `SERVER_ADDR`: Host name or ip address of your remote server, default value is `0.0.0.0`.
 - `SERVER_PORT`: Port number of your remote server, default value is `8388`.
 - `PASSWORD`: Password of your remote server, default value is `ChangeMe!!!`.
 - `METHOD`: Encrypt method, default value is `chacha20-ietf-poly1305`.
