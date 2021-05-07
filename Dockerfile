@@ -1,13 +1,13 @@
 FROM golang:alpine AS golang
 
-ENV V2RAY_PLUGIN_VERSION v1.3.1
+ENV V2RAY_PLUGIN_VERSION v4.38.3
 ENV GO111MODULE on
 
 # Build v2ray-plugin
 RUN apk add --no-cache git build-base \
-    && mkdir -p /go/src/github.com/shadowsocks \
-    && cd /go/src/github.com/shadowsocks \
-    && git clone https://github.com/shadowsocks/v2ray-plugin.git \
+    && mkdir -p /go/src/github.com/teddysun \
+    && cd /go/src/github.com/teddysun \
+    && git clone https://github.com/teddysun/v2ray-plugin.git \
     && cd v2ray-plugin \
     && git checkout "$V2RAY_PLUGIN_VERSION" \
     && go get -d \
@@ -60,7 +60,7 @@ RUN set -ex \
     && apk del .build-deps
 
 # Copy v2ray-plugin
-COPY --from=golang /go/src/github.com/shadowsocks/v2ray-plugin/v2ray-plugin /usr/local/bin
+COPY --from=golang /go/src/github.com/teddysun/v2ray-plugin/v2ray-plugin /usr/local/bin
 
 # Shadowsocks environment variables
 ENV SERVER_ADDR 0.0.0.0
