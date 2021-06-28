@@ -13,7 +13,7 @@ RUN apk add --no-cache git build-base \
     && go get -d \
     && go build
 
-FROM alpine
+FROM alpine:3.13
 
 LABEL maintainer="Acris Liu <acrisliu@gmail.com>"
 
