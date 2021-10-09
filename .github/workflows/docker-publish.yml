@@ -11,6 +11,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+    
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: acrisliu/shadowsocks-libev
+          flavor: |
+            latest=auto
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -22,4 +30,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: acrisliu/shadowsocks-libev:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
