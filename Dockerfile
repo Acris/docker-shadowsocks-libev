@@ -63,7 +63,6 @@ RUN set -ex \
 COPY --from=golang /go/src/github.com/teddysun/v2ray-plugin/v2ray-plugin /usr/local/bin
 
 # Shadowsocks environment variables
-ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8388
 ENV PASSWORD ChangeMe!!!
 ENV METHOD chacha20-ietf-poly1305
@@ -78,7 +77,6 @@ USER nobody
 
 # Start shadowsocks-libev server
 CMD exec ss-server \
-    -s $SERVER_ADDR \
     -p $SERVER_PORT \
     -k $PASSWORD \
     -m $METHOD \
