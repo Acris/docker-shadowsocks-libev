@@ -84,7 +84,7 @@ acrisliu/shadowsocks-libev
 
 Remember mount your certs to container, recommend use [acme.sh](acme.sh) to issue certs.
 
-For more v2ray-plugin configrations please go to [v2ray plugin docs](https://github.com/shadowsocks/v2ray-plugin/blob/master/README.md)
+For more v2ray-plugin configrations please go to [v2ray plugin docs](https://github.com/teddysun/v2ray-plugin/blob/master/README.md)
 
 
 ## With docker-compose
