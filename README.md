@@ -72,8 +72,6 @@ acrisliu/shadowsocks-libev
 
 **Enable v2ray-plugin with QUIC mode:**
 
-Currently(with v2ray-plugin's version < v5), you should use `nightly` tag for QUIC mode, see https://github.com/Acris/docker-shadowsocks-libev/issues/28 for more details.
-
 It is recommended to increase the maximum buffer size by running:
 ```
 sysctl -w net.core.rmem_max=2500000
@@ -91,7 +89,7 @@ docker run -d \
 -p 8388:8388/tcp \
 -p 8388:8388/udp \
 --restart=always \
-acrisliu/shadowsocks-libev:nightly
+acrisliu/shadowsocks-libev
 ```
 
 *Attentions: if you want to enable v2ray-plugin QUIC mode, you must disable the UDP relay of ss-server, without `-u` argument in `ARGS`.*
