@@ -1,6 +1,5 @@
 FROM golang:alpine AS golang
 
-ENV V2RAY_PLUGIN_VERSION v4.44.0
 ENV GO111MODULE on
 
 # Build v2ray-plugin
@@ -9,15 +8,12 @@ RUN apk add --no-cache git build-base \
     && cd /go/src/github.com/teddysun \
     && git clone https://github.com/teddysun/v2ray-plugin.git \
     && cd v2ray-plugin \
-    && git checkout "$V2RAY_PLUGIN_VERSION" \
     && go get -d \
     && go build
 
 FROM alpine:3.13
 
 LABEL maintainer="Acris Liu <acrisliu@gmail.com>"
-
-ENV SHADOWSOCKS_LIBEV_VERSION v3.3.5
 
 # Build shadowsocks-libev
 RUN set -ex \
@@ -42,7 +38,6 @@ RUN set -ex \
     && cd /tmp/build-shadowsocks-libev \
     && git clone https://github.com/shadowsocks/shadowsocks-libev.git \
     && cd shadowsocks-libev \
-    && git checkout "$SHADOWSOCKS_LIBEV_VERSION" \
     && git submodule update --init --recursive \
     && ./autogen.sh \
     && ./configure --disable-documentation \
