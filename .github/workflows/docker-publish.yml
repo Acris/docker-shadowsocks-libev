@@ -3,7 +3,9 @@ name: Docker
 on:
   push:
     branches:
-      - 'master'
+      - 'nightly'
+  schedule:
+    - cron:  '30 5 * * *'
 
 jobs:
   build:
@@ -18,7 +20,7 @@ jobs:
         with:
           images: acrisliu/shadowsocks-libev
           tags: |
-            type=raw,value=latest
+            type=raw,value=nightly
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
