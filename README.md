@@ -1,9 +1,9 @@
 # Shadowsocks-libev Dockerfile
 This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) with [v2ray-plugin](https://github.com/teddysun/v2ray-plugin), based on Alpine Linux.
 
-Current version:
-- shadowsocks-libev: master branch
-- v2ray-plugin: master branch
+Tags:
+- latest: shadowsocks-libev: v3.3.5 and v2ray-plugin: v4.44.0
+- nightly: shadowsocks-libev: master branch and v2ray-plugin: master branch
 
 
 ## Quick Start
@@ -11,13 +11,13 @@ Current version:
 Get the docker image by running the following commands:
 
 ```bash
-docker pull acrisliu/shadowsocks-libev:nightny
+docker pull acrisliu/shadowsocks-libev
 ```
 
 Start a instance:
 
 ```bash
-docker run -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --restart=always acrisliu/shadowsocks-libev:nightny
+docker run -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --restart=always acrisliu/shadowsocks-libev
 ```
 
 
@@ -35,7 +35,7 @@ docker run -d \
 -p 8388:8388/tcp \
 -p 8388:8388/udp \
 --restart=always \
-acrisliu/shadowsocks-libev:nightny
+acrisliu/shadowsocks-libev
 ```
 
 Available environment variables and default values:
@@ -62,16 +62,18 @@ docker run -d \
 -p 8388:8388/tcp \
 -p 8388:8388/udp \
 --restart=always \
-acrisliu/shadowsocks-libev:nightny
+acrisliu/shadowsocks-libev
 ```
 
 
-Enable v2ray-plugin with QUIC mode:
+**Enable v2ray-plugin with QUIC mode:**
+Currently(with v2ray-plugin's version < v5), you should use `nightly` tag for QUIC mode, see https://github.com/Acris/docker-shadowsocks-libev/issues/28 for more details.
 
 It is recommended to increase the maximum buffer size by running:
 ```
 sysctl -w net.core.rmem_max=2500000
 ```
+
 This command would increase the maximum receive buffer size to roughly 2.5 MB.
 
 ```sh
@@ -84,7 +86,7 @@ docker run -d \
 -p 8388:8388/tcp \
 -p 8388:8388/udp \
 --restart=always \
-acrisliu/shadowsocks-libev:nightny
+acrisliu/shadowsocks-libev:nightly
 ```
 
 *Attentions: if you want to enable v2ray-plugin QUIC mode, you must disable the UDP relay of ss-server, without `-u` argument in `ARGS`.*
@@ -101,7 +103,7 @@ version: "3.7"
 services:
   shadowsocks-libev:
     container_name: shadowsocks-libev
-    image: acrisliu/shadowsocks-libev:nightny
+    image: acrisliu/shadowsocks-libev
     user: root
     ports:
       - "8388:8388/tcp"
@@ -121,7 +123,7 @@ Just use bellow commands:
 
 ```bash
 # Pull the latest image
-docker pull acrisliu/shadowsocks-libev:nightny
+docker pull acrisliu/shadowsocks-libev
 # Stop and remove old container
 docker stop shadowsocks-libev
 docker rm shadowsocks-libev
@@ -132,5 +134,5 @@ docker run -d \
 -p 8388:8388/tcp \
 -p 8388:8388/udp \
 --restart=always \
-acrisliu/shadowsocks-libev:nightny
+acrisliu/shadowsocks-libev
 ```
