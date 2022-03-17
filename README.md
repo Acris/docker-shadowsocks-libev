@@ -1,9 +1,9 @@
 # Shadowsocks-libev Dockerfile
 This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) with [v2ray-plugin](https://github.com/teddysun/v2ray-plugin), based on Alpine Linux.
 
-Current version:
-- shadowsocks-libev: v3.3.5
-- v2ray-plugin: v4.44.0
+Tags:
+- latest: shadowsocks-libev: v3.3.5 and v2ray-plugin: v4.44.0
+- nightly: shadowsocks-libev: master branch and v2ray-plugin: master branch
 
 
 ## Quick Start
@@ -66,7 +66,16 @@ acrisliu/shadowsocks-libev
 ```
 
 
-Enable v2ray-plugin with QUIC mode:
+**Enable v2ray-plugin with QUIC mode:**
+Currently(with v2ray-plugin's version < v5), you should use `nightly` tag for QUIC mode, see https://github.com/Acris/docker-shadowsocks-libev/issues/28 for more details.
+
+It is recommended to increase the maximum buffer size by running:
+```
+sysctl -w net.core.rmem_max=2500000
+```
+
+This command would increase the maximum receive buffer size to roughly 2.5 MB.
+
 ```sh
 docker run -d \
 -e "ARGS=--plugin v2ray-plugin --plugin-opts server;mode=quic;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/fullchain.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key" \
@@ -77,7 +86,7 @@ docker run -d \
 -p 8388:8388/tcp \
 -p 8388:8388/udp \
 --restart=always \
-acrisliu/shadowsocks-libev
+acrisliu/shadowsocks-libev:nightly
 ```
 
 *Attentions: if you want to enable v2ray-plugin QUIC mode, you must disable the UDP relay of ss-server, without `-u` argument in `ARGS`.*
@@ -94,7 +103,7 @@ version: "3.7"
 services:
   shadowsocks-libev:
     container_name: shadowsocks-libev
-    image: acrisliu/shadowsocks-libev:latest
+    image: acrisliu/shadowsocks-libev
     user: root
     ports:
       - "8388:8388/tcp"
