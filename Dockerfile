@@ -1,4 +1,4 @@
-FROM golang:alpine AS golang
+FROM golang:1.17-alpine AS golang
 
 ENV V2RAY_PLUGIN_VERSION v4.44.0
 ENV GO111MODULE on
@@ -13,7 +13,7 @@ RUN apk add --no-cache git build-base \
     && go get -d \
     && go build
 
-FROM alpine:3.13
+FROM alpine:3.15
 
 LABEL maintainer="Acris Liu <acrisliu@gmail.com>"
 
