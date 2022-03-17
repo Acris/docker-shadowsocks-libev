@@ -1,4 +1,4 @@
-FROM golang:alpine AS golang
+FROM golang:1.17-alpine AS golang
 
 ENV GO111MODULE on
 
