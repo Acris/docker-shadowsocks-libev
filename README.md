@@ -1,9 +1,13 @@
 # Shadowsocks-libev Dockerfile
 This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/) with [v2ray-plugin](https://github.com/teddysun/v2ray-plugin), based on Alpine Linux.
 
-Tags:
-- latest: shadowsocks-libev: v3.3.5 and v2ray-plugin: v4.44.0
-- nightly: shadowsocks-libev: master branch and v2ray-plugin: master branch
+**Tags:**
+- latest
+  - shadowsocks-libev: v3.3.5
+  - v2ray-plugin: v4.44.0
+- nightly
+  - shadowsocks-libev: master branch
+  - v2ray-plugin: master branch
 
 
 ## Quick Start
@@ -67,6 +71,7 @@ acrisliu/shadowsocks-libev
 
 
 **Enable v2ray-plugin with QUIC mode:**
+
 Currently(with v2ray-plugin's version < v5), you should use `nightly` tag for QUIC mode, see https://github.com/Acris/docker-shadowsocks-libev/issues/28 for more details.
 
 It is recommended to increase the maximum buffer size by running:
