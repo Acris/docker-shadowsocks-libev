@@ -1,4 +1,4 @@
-FROM golang:1.17-alpine AS golang
+FROM golang:1.19-alpine AS golang
 
 ENV GO111MODULE on
 
@@ -11,7 +11,7 @@ RUN apk add --no-cache git build-base \
     && go get -d \
     && go build
 
-FROM alpine:3.13
+FROM alpine:3.17
 
 LABEL maintainer="Acris Liu <acrisliu@gmail.com>"
 
