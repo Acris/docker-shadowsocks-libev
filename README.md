@@ -4,7 +4,7 @@ This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadow
 **Tags:**
 - latest
   - shadowsocks-libev: v3.3.5
-  - v2ray-plugin: v4.44.0
+  - v2ray-plugin: v5.1.0
 - nightly
   - shadowsocks-libev: master branch
   - v2ray-plugin: master branch
@@ -18,7 +18,7 @@ Get the docker image by running the following commands:
 docker pull acrisliu/shadowsocks-libev
 ```
 
-Start a instance:
+Start an instance:
 
 ```bash
 docker run -d --name=shadowsocks-libev -p 8388:8388/tcp -p 8388:8388/udp --restart=always acrisliu/shadowsocks-libev
@@ -102,7 +102,6 @@ For more v2ray-plugin configrations please go to [v2ray plugin docs](https://git
 ## With docker-compose
 docker-compose.yml:
 ```yml
-version: "3.7"
 services:
   shadowsocks-libev:
     container_name: shadowsocks-libev

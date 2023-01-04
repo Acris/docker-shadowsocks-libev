@@ -1,6 +1,6 @@
-FROM golang:1.17-alpine AS golang
+FROM golang:1.19-alpine AS golang
 
-ENV V2RAY_PLUGIN_VERSION v4.44.0
+ENV V2RAY_PLUGIN_VERSION v5.1.0
 ENV GO111MODULE on
 
 # Build v2ray-plugin
