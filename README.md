@@ -3,8 +3,8 @@ This Dockerfile build an image for [shadowsocks-libev](https://github.com/shadow
 
 **Tags:**
 - latest
-  - shadowsocks-libev: v3.3.5
-  - v2ray-plugin: v5.1.0
+  - shadowsocks-libev: v3.3.6
+  - v2ray-plugin: v5.49.0
 - nightly
   - shadowsocks-libev: master branch
   - v2ray-plugin: master branch

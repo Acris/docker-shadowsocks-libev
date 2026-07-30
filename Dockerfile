@@ -1,6 +1,6 @@
 FROM golang:1.19-alpine AS golang
 
-ENV V2RAY_PLUGIN_VERSION v5.1.0
+ENV V2RAY_PLUGIN_VERSION v5.49.0
 ENV GO111MODULE on
 
 # Build v2ray-plugin
@@ -17,7 +17,7 @@ FROM alpine:3.17
 
 LABEL maintainer="Acris Liu <acrisliu@gmail.com>"
 
-ENV SHADOWSOCKS_LIBEV_VERSION v3.3.5
+ENV SHADOWSOCKS_LIBEV_VERSION v3.3.6
 
 # Build shadowsocks-libev
 RUN set -ex \
