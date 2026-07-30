@@ -4,12 +4,25 @@ on:
   push:
     branches:
       - 'master'
+      - 'nightly'
+  schedule:
+    - cron: "0 2 * * *"
+      timezone: "America/Montreal"
 
 jobs:
+  env:
+    TARGET_BRANCH: ${{ github.event_name == 'schedule' && 'nightly' || github.ref_name }}
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout nightly for schedule
+        if: github.event_name == 'schedule'
+        uses: actions/checkout@v7
+        with:
+          ref: dev
+
+      - name: Checkout pushed branch
+        if: github.event_name != 'schedule'
         uses: actions/checkout@v7
     
       - name: Docker meta
@@ -18,7 +31,8 @@ jobs:
         with:
           images: acrisliu/shadowsocks-libev
           tags: |
-            type=raw,value=latest
+            type=raw,value=latest,enable=${{ env.TARGET_BRANCH == 'master' }}
+            type=raw,value=nightly,enable=${{ env.TARGET_BRANCH == 'nightly' }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
