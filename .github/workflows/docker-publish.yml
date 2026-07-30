@@ -10,10 +10,12 @@ on:
       timezone: "America/Montreal"
 
 jobs:
-  env:
-    TARGET_BRANCH: ${{ github.event_name == 'schedule' && 'nightly' || github.ref_name }}
   build:
     runs-on: ubuntu-latest
+
+    env:
+      TARGET_BRANCH: ${{ github.event_name == 'schedule' && 'nightly' || github.ref_name }}
+
     steps:
       - name: Checkout nightly for schedule
         if: github.event_name == 'schedule'
