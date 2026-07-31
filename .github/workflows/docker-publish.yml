@@ -21,7 +21,7 @@ jobs:
         if: github.event_name == 'schedule'
         uses: actions/checkout@v7
         with:
-          ref: dev
+          ref: nightly
 
       - name: Checkout pushed branch
         if: github.event_name != 'schedule'
